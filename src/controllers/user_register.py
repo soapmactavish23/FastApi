@@ -1,7 +1,7 @@
+from src.controllers.interfaces.user_register_interface import UserRegisterInterface
 from src.models.repositories.interfaces.users_repository_interface import UsersRepositoryInterface
 
-
-class UserRegister:
+class UserRegister(UserRegisterInterface):
     def __init__(self, users_repository: UsersRepositoryInterface) -> None:
         self.__users_repository = users_repository
 
