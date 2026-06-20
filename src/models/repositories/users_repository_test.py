@@ -13,3 +13,10 @@ async def test_insert_user():
 
     repo = UsersRepository()
     await repo.insert_users(new_user)
+
+@pytest.mark.asyncio
+@pytest.mark.skip(reason="Select in DB")
+async def test_get_users_by_name():
+    repo = UsersRepository()
+    response = await repo.get_users_by_name("NomeDeTeste")
+    print(response)

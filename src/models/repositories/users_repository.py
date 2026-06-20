@@ -1,4 +1,5 @@
-from sqlalchemy import insert
+# pylint:disable = W0212
+from sqlalchemy import insert, select
 
 from src.models.entities.users import Users
 from src.models.settings.database_connection_handler import DBConnectionHandler
@@ -10,3 +11,14 @@ class UsersRepository:
             query = insert(Users).values(**user_infos)
             await db.session.execute(query)
             await db.session.commit()
+
+    async def get_users_by_name(self, user_name: str) -> list[dict]:
+        async with DBConnectionHandler() as db:
+            query = (
+                select(Users)
+                .where(Users.c.user_name == user_name)
+            )
+            result = await db.session.execute(query)
+            rows = result.fetchall()
+
+            return [dict(row._mapping) for row in rows]
