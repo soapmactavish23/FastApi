@@ -1,12 +1,11 @@
 from sqlalchemy import Table, Column, Integer, String
-
 from src.models.settings.metadata import metadata
 
 Users = Table(
-    'users',
+    "users",
     metadata,
-    Column('id', Integer, primary_key=True),
-    Column('name', String, nullable=False),
-    Column('age', Integer),
-    Column('uf', String),
+    Column("id", Integer, primary_key=True),
+    Column("user_name", String, nullable=False),
+    Column("age", Integer),
+    Column("uf", String)
 )
